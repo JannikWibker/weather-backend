@@ -28,7 +28,7 @@ const app = express()
 
 
 const cors = (req, res, next) => {
-  const allowed = ['http://jannik.ddns.net', 'http://jannik.ddns.net:3000', 'http://localhost', 'http://localhost:3000']
+  const allowed = ['http://jannik.ddns.net', 'http://jannik.ddns.net:3000', 'http://jannik.ddns.net:9129', 'http://localhost', 'http://localhost:3000']
   res.header('Access-Control-Allow-Origin', allowed.indexOf(req.get('origin')) !== -1 ? req.get('origin') : '')
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
@@ -93,4 +93,4 @@ app.get('/city', (req, res) => {
     .then(arr => res.json(arr))
 })
 
-app.listen(8080)
+app.listen(process.argv[2] || process.env.PORT || 3002)
